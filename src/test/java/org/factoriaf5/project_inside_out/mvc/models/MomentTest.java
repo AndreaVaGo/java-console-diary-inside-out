@@ -7,7 +7,13 @@ public class MomentTest {
 
     @Test
     void shouldReturnTitleWhenMomentIsCreated() {
-       Moment moment = new Moment("Un día en el parque", "Lorem ipsum dolor sit amet");
-       assertEquals("Un día en el parque", moment.getTitle());
+        Moment moment = new Moment("Un día en el parque", "Lorem ipsum dolor sit amet", null);
+        assertEquals("Un día en el parque", moment.getTitle());
+    }
+
+    @Test
+    void shouldReturnEmotionWhenMomentIsCreated() {
+        Moment moment = new Moment("Un día en el parque", "Lorem ipsum dolor sit amet", Emotion.JOY);
+        assertEquals(Emotion.JOY, moment.getEmotion());
     }
 }
