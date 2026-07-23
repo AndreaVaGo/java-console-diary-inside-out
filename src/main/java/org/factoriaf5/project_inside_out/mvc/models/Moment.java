@@ -9,6 +9,7 @@ public class Moment {
     private Emotion emotion;
     private LocalDate momentDate;
     private LocalDate creationDate;
+    private LocalDate modificationDate;
 
     public Moment(String title, String description, Emotion emotion, LocalDate momentDate) {
         this.title = title;
@@ -16,6 +17,7 @@ public class Moment {
         this.emotion = emotion;
         this.momentDate = momentDate;
         this.creationDate = LocalDate.now();
+        this.modificationDate = LocalDate.now();
     }
 
     public String getTitle() {
@@ -36,5 +38,9 @@ public class Moment {
 
     public LocalDate getCreationDate() {
         return creationDate;
+    }
+
+    public LocalDate getModificationDate() {
+        return modificationDate;
     }
 }
