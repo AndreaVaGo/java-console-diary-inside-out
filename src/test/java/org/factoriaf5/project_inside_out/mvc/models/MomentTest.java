@@ -25,4 +25,11 @@ public class MomentTest {
         Moment moment = new Moment("Un día en el parque", "Lorem ipsum dolor sit amet", Emotion.JOY, momentDate);
         assertEquals(momentDate, moment.getMomentDate());
     }
+
+    @Test
+    void shouldReturnCreationDateWhenMomentIsCreated() {
+        LocalDate momentDate = LocalDate.of(2024, 5, 1);
+        Moment moment = new Moment("Un día en el parque", "Lorem ipsum dolor sit amet", Emotion.JOY, momentDate);
+        assertEquals(LocalDate.now(), moment.getCreationDate());
+    }
 }
