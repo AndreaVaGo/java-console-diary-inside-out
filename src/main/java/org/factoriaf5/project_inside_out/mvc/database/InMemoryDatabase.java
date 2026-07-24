@@ -24,4 +24,9 @@ public class InMemoryDatabase {
         return moments.values();
 
     }
+
+    public void put(Integer id, Moment moment) {
+        moments.put(id, moment);
+    }
+
 }
