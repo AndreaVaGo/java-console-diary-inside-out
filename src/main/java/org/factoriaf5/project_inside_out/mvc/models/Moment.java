@@ -44,8 +44,4 @@ public class Moment {
         return modificationDate;
     }
 
-    public Object put() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'put'");
-    }
 }

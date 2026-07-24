@@ -23,9 +23,23 @@ public class InMemoryDatabaseTest {
 
         Moment moment = new Moment("Un día en el parque", "Lorem ipsum dolor sit amet", Emotion.JOY,
                 LocalDate.of(2024, 5, 1));
-        Integer id = 1;
+        Integer id = 2;
         database.put(id, moment);
 
         assertEquals(sizeBefore + 1, database.getAll().size());
+    }
+
+    @Test
+    void shouldRemoveMoments() {
+        InMemoryDatabase database = InMemoryDatabase.getInstance();
+        int sizeBefore = database.getAll().size();
+
+        Moment moment = new Moment("Un día en el parque", "Lorem ipsum dolor sit amet", Emotion.JOY,
+                LocalDate.of(2024, 5, 1));
+        Integer id = 1;
+        database.put(id, moment);
+        database.remove(id);
+
+        assertEquals(sizeBefore, database.getAll().size());
     }
 }

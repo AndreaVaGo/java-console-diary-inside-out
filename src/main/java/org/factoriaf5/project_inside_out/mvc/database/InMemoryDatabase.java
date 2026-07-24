@@ -29,4 +29,8 @@ public class InMemoryDatabase {
         moments.put(id, moment);
     }
 
+    public void remove(Integer id) {
+        moments.remove(id);
+    }
+
 }
