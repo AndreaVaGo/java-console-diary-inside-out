@@ -1,5 +1,11 @@
 package org.factoriaf5.project_inside_out;
 
+import java.util.Scanner;
+
+import org.factoriaf5.project_inside_out.mvc.controllers.MomentController;
+import org.factoriaf5.project_inside_out.mvc.repositories.MomentRepository;
+import org.factoriaf5.project_inside_out.mvc.views.MomentView;
+
 /**
  * Hello world!
  */
@@ -8,10 +14,15 @@ public final class App {
     }
 
     /**
-     * Says hello to the world.
-     * @param args The arguments of the program.
+     * Arranca la aplicación Mi Diario.
+     *
+     * @param args Argumentos del programa.
      */
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Scanner scanner = new Scanner(System.in);
+        MomentRepository repository = new MomentRepository();
+        MomentController controller = new MomentController(repository);
+        MomentView view = new MomentView(controller, scanner);
+        view.start();
     }
 }

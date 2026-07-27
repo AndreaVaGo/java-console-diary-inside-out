@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Moment {
 
+    private Integer id;
     private String title;
     private String description;
     private Emotion emotion;
@@ -18,6 +19,14 @@ public class Moment {
         this.momentDate = momentDate;
         this.creationDate = LocalDate.now();
         this.modificationDate = LocalDate.now();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {

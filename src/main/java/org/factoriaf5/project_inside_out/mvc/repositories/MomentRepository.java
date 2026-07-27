@@ -20,6 +20,7 @@ public class MomentRepository implements InterfaceRepository {
 
     @Override
     public void save(Moment moment) {
+        moment.setId(nextId);
         database.put(nextId, moment);
         nextId++;
     }
