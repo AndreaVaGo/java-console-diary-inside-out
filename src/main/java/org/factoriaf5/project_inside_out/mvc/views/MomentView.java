@@ -41,9 +41,27 @@ public class MomentView {
                         """);
     }
 
+    private int readInt() {
+        while (true) {
+            String text = scanner.nextLine();
+            try {
+                return Integer.parseInt(text.trim());
+            } catch (NumberFormatException e) {
+                System.out.print("Debe introducir un número. Inténtelo de nuevo: ");
+            }
+        }
+    }
+
     private int readOption() {
-        showMenu();
-        return scanner.nextInt();
+        int option;
+        do {
+            showMenu();
+            option = readInt();
+            if (!actions.containsKey(option)) {
+                System.out.println("Opción no válida, elija una del 1 al 5.");
+            }
+        } while (!actions.containsKey(option));
+        return option;
     }
 
     private Emotion readEmotion() {
@@ -53,8 +71,14 @@ public class MomentView {
             System.out.println(i + ". " + e.getLabel());
             i++;
         }
-        System.out.print("Ingrese su opción: ");
-        int emotionOption = scanner.nextInt();
+        int emotionOption;
+        do {
+            System.out.print("Ingrese su opción: ");
+            emotionOption = readInt();
+            if (emotionOption < 1 || emotionOption > Emotion.values().length) {
+                System.out.println("Opción no válida, inténtelo de nuevo.");
+            }
+        } while (emotionOption < 1 || emotionOption > Emotion.values().length);
         return Emotion.values()[emotionOption - 1];
     }
 
@@ -64,7 +88,12 @@ public class MomentView {
             System.out.print("Ingrese la fecha (dd/mm/año): ");
             String text = scanner.nextLine();
             try {
-                date = LocalDate.parse(text, dateFormatter);
+                LocalDate parsed = LocalDate.parse(text, dateFormatter);
+                if (parsed.isAfter(LocalDate.now())) {
+                    System.out.println("La fecha no puede ser futura, inténtelo de nuevo.");
+                } else {
+                    date = parsed;
+                }
             } catch (Exception e) {
                 System.out.println("Fecha inválida, inténtelo de nuevo.");
             }
@@ -89,8 +118,16 @@ public class MomentView {
         System.out.println();
     }
 
+    private boolean existsMomentWithId(int id) {
+        for (Moment m : controller.listMoments()) {
+            if (m.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void handleAddMoment() {
-        scanner.nextLine(); // limpia el salto de línea pendiente
         System.out.print("Ingrese el título: ");
         String title = scanner.nextLine();
         System.out.print("Ingrese la descripción: ");
@@ -108,10 +145,15 @@ public class MomentView {
     }
 
     private void handleDeleteMoment() {
+        printMoments(controller.listMoments());
         System.out.print("Ingresa el identificador del momento: ");
-        int id = scanner.nextInt();
-        controller.deleteMoment(id);
-        System.out.println("Momento vivido eliminado correctamente.");
+        int id = readInt();
+        if (existsMomentWithId(id)) {
+            controller.deleteMoment(id);
+            System.out.println("Momento vivido eliminado correctamente.");
+        } else {
+            System.out.println("No existe ningún momento con ese identificador.");
+        }
     }
 
     private void handleFilterMoments() {
@@ -122,13 +164,12 @@ public class MomentView {
                         2. Fecha
                         """);
         System.out.print("Ingrese una opción: ");
-        int filterOption = scanner.nextInt();
+        int filterOption = readInt();
 
         if (filterOption == 1) {
             Emotion filterEmotion = readEmotion();
             printMoments(controller.filterByEmotion(filterEmotion));
         } else {
-            scanner.nextLine();
             LocalDate filterDate = readMomentDate();
             printMoments(controller.filterByMonth(filterDate));
         }
