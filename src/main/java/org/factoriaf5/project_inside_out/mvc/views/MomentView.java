@@ -58,6 +58,20 @@ public class MomentView {
         return Emotion.values()[emotionOption - 1];
     }
 
+    private LocalDate readMomentDate() {
+        LocalDate date = null;
+        do {
+            System.out.print("Ingrese la fecha (dd/mm/año): ");
+            String text = scanner.nextLine();
+            try {
+                date = LocalDate.parse(text, dateFormatter);
+            } catch (Exception e) {
+                System.out.println("Fecha inválida, inténtelo de nuevo.");
+            }
+        } while (date == null);
+        return date;
+    }
+
     private void printMoments(List<Moment> moments) {
         if (moments.isEmpty()) {
             System.out.println("No hay momentos disponibles.");
@@ -81,9 +95,7 @@ public class MomentView {
         String title = scanner.nextLine();
         System.out.print("Ingrese la descripción: ");
         String description = scanner.nextLine();
-        System.out.print("Ingrese la fecha (dd/mm/año): ");
-        String momentDateText = scanner.nextLine();
-        LocalDate parsedDate = LocalDate.parse(momentDateText, dateFormatter);
+        LocalDate parsedDate = readMomentDate();
         Emotion emotion = readEmotion();
 
         Moment moment = new Moment(title, description, emotion, parsedDate);
@@ -117,9 +129,7 @@ public class MomentView {
             printMoments(controller.filterByEmotion(filterEmotion));
         } else {
             scanner.nextLine();
-            System.out.print("Ingrese la fecha (dd/mm/año): ");
-            String filterDateText = scanner.nextLine();
-            LocalDate filterDate = LocalDate.parse(filterDateText, dateFormatter);
+            LocalDate filterDate = readMomentDate();
             printMoments(controller.filterByMonth(filterDate));
         }
     }
