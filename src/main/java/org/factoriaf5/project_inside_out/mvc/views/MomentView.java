@@ -15,6 +15,7 @@ public class MomentView {
     private MomentController controller;
     private Scanner scanner;
     private Map<Integer, Runnable> actions;
+    private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public MomentView(MomentController controller, Scanner scanner) {
         this.controller = controller;
@@ -63,12 +64,15 @@ public class MomentView {
         } else {
             System.out.println("Lista de momentos vividos:");
             for (Moment m : moments) {
-                System.out.println("Ocurrió el: " + m.getMomentDate()
-                        + ". Título: " + m.getTitle()
-                        + ". Descripción: " + m.getDescription()
-                        + ". Emoción: " + m.getEmotion().getLabel());
+                System.out.println("ID: " + m.getId());
+                System.out.println("Título: " + m.getTitle());
+                System.out.println("Fecha: " + m.getMomentDate().format(dateFormatter));
+                System.out.println("Descripción: " + m.getDescription());
+                System.out.println("Emoción: " + m.getEmotion().getLabel());
+                System.out.println("------------------------");
             }
         }
+        System.out.println();
     }
 
     private void handleAddMoment() {
@@ -79,8 +83,7 @@ public class MomentView {
         String description = scanner.nextLine();
         System.out.print("Ingrese la fecha (dd/mm/año): ");
         String momentDateText = scanner.nextLine();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate parsedDate = LocalDate.parse(momentDateText, formatter);
+        LocalDate parsedDate = LocalDate.parse(momentDateText, dateFormatter);
         Emotion emotion = readEmotion();
 
         Moment moment = new Moment(title, description, emotion, parsedDate);
@@ -116,8 +119,7 @@ public class MomentView {
             scanner.nextLine();
             System.out.print("Ingrese la fecha (dd/mm/año): ");
             String filterDateText = scanner.nextLine();
-            DateTimeFormatter filterFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate filterDate = LocalDate.parse(filterDateText, filterFormatter);
+            LocalDate filterDate = LocalDate.parse(filterDateText, dateFormatter);
             printMoments(controller.filterByMonth(filterDate));
         }
     }
