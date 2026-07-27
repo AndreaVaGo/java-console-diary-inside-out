@@ -1,11 +1,14 @@
-# Project Inside Out
+# Mi Diario — Inside Out
 
-## Instrucciones
-Se os ha encargado la creación de una aplicación de consola con la cual el usuario podrá gestionar momentos vividos, Mi Diario. Cada momento tendrá una emoción asignada junto con la fecha de cuando ocurrio.
+## Descripción
 
-Cada momento vivído tendrá un identificador, un título, una descripción, una emoción, fecha del momento, fecha de creación, fecha de modificación.
+**Mi Diario** es una aplicación de consola desarrollada en Java que permite al usuario gestionar los momentos vividos a lo largo del tiempo, cada uno asociado a una emoción y a una fecha concreta. El usuario puede añadir nuevos momentos, consultar la lista completa, eliminar un momento existente y filtrar los momentos registrados por emoción o por mes.
 
-Listado de emociones:
+El proyecto sigue una arquitectura **MVC + Repository**, con persistencia en memoria mediante el patrón **Singleton**, y ha sido desarrollado siguiendo la metodología **TDD** (Test Driven Development), aplicando principios **SOLID** a lo largo de todo el diseño.
+
+Cada momento vivido tiene un identificador, un título, una descripción, una emoción, la fecha del momento, la fecha de creación y la fecha de modificación.
+
+### Listado de emociones
 1. Alegría
 2. Tristeza
 3. Ira
@@ -17,157 +20,63 @@ Listado de emociones:
 9. Aburrimiento
 10. Nostalgia
 
-Por cada historia de usuario se deberán redactar los criterios de aceptación.
+## Pre-requisitos
 
----
+Para ejecutar este proyecto es necesario tener instalado:
 
-## Historias de usuario
-1. COMO usuario QUIERO añadir un momento vivido PARA poder visualisarlo cuando lo necesite recordar
+- **Java 21** (JDK)
+- **Maven** (3.6.3 o superior)
+- **Git**
 
-2. COMO usuario QUIERO recuperar la lista de lo momentos vividos registrados PARA poder repasarlos
+## Pasos para la instalación
 
-3. COMO usuario QUIERO suprimir un momento vivido PARA evitar duplicados y mantener la lista de momentos organizada
-
-4. COMO usuario QUIERO obtener los momentos vividos según su emoción PARA poder visualizarlos
-
-5. COMO usuario QUIERO obtener los momentos vividos en un mes determinado
-
-6. COMO usuario QUIERO salir del programa PARA poder iniciar otro
-
----
-
-## Ejemplo de interacción con la consola
-
-```
-My diario:
-1. Añadir momento
-2. Ver todos los momentos disponibles
-3. Eliminar un momento
-4. Filtrar los momentos
-5. Salir
-Seleccione una opción: 1
-
-Ingrese el título: Un día en el parque de atracciones
-Ingresa la fecha (dd/mm/year): 01/05/2024
-Ingrese la descripción: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed eros vel massa scelerisque convallis interdum ut purus.
-
-Selecciona una emoción:
-1. Alegría
-2. Tristeza
-3. Ira
-4. Asco
-5. Miedo
-6. Ansiedad
-7. Envidia
-8. Vergüenza
-9. Aburrimiento
-10. Nostalgia
-Ingrese su opción: 1
-Momento vivído añadido correctamente.
-
-My diario:
-1. Añadir momento
-2. Ver todos los momentos disponibles
-3. Eliminar un momento
-4. Filtrar los momentos
-5. Salir
-Seleccione una opción: 2
-
-Lista de momentos vividos:
-1. Ocurrio el: 01/01/2024. Título: Un día en el parque de atracciones. Descripción: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed eros vel massa scelerisque convallis interdum ut purus. Emoción: Alegría
-
-My diario:
-1. Añadir momento
-2. Ver todos los momentos disponibles
-3. Eliminar un momento
-4. Filtrar los momentos
-5. Salir
-Seleccione una opción: 3
-
-Ingresa el identificador del momento: 1
-Momento vivído eliminado correctamente.
-
-My diario:
-1. Añadir momento
-2. Ver todos los momentos disponibles
-3. Eliminar un momento
-4. Filtrar los momentos
-5. Salir
-Seleccione una opción: 4
-
-Filtar por ...:
-1. Emoción
-2. Fecha
-Ingrese una opción: 1
-
-Selecciona una emoción:
-1. Alegría
-2. Tristeza
-3. Ira
-4. Asco
-5. Miedo
-6. Ansiedad
-7. Envidia
-8. Vergüenza
-9. Aburrimiento
-10. Nostalgia
-Ingrese su opción: 1
-
-Lista de momentos vividos:
-1. Ocurrio el: 01/01/2024. Título: Un día en el parque de atracciones. Descripción: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed eros vel massa scelerisque convallis interdum ut purus. Emoción: Alegría
-
-My diario:
-1. Añadir momento
-2. Ver todos los momentos disponibles
-3. Eliminar un momento
-4. Filtrar los momentos
-5. Salir
-Seleccione una opción: 4
-
-Filtrar por ...:
-1. Emoción
-2. Fecha
-Ingrese una opción: 2
-
-Ingrese la fecha (dd/mm/year): 01/01/2024
-
-Lista de momentos vividos:
-1. Ocurrio el: 01/01/2024. Título: Un día en el parque de atracciones. Descripción: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed eros vel massa scelerisque convallis interdum ut purus. Emoción: Alegría
-
-My diario:
-1. Añadir momento
-2. Ver todos los momentos disponibles
-3. Eliminar un momento
-4. Filtrar los momentos
-5. Salir
-Seleccione una opción: 5
-
-Hasta la próxima!!!
+1. Clona el repositorio (o tu fork) en tu equipo:
+```bash
+   git clone https://github.com/AndreaVaGo/project-java-consoleapp-inside-out.git
 ```
 
----
+2. Entra en la carpeta del proyecto:
+```bash
+   cd project-java-consoleapp-inside-out
+```
 
-## Refinamiento (Proximamente)
+3. Instala las dependencias con Maven:
+```bash
+   mvn install
+```
 
----
+4. Ejecuta el programa:
+```bash
+   mvn compile exec:java -Dexec.mainClass="org.factoriaf5.project_inside_out.App"
+```
 
-## 🏁 Rúbrica de evaluación
-- <strong>Interfaz de usuario</strong>
-    - La interfaz de usuario permite añadir (10%)
-    - La interfaz de usuario permite visualizar todos los momentos (10%)
-    - La interfaz de usuario permite eliminar un momento (10%)
-    - La interfaz de usuario permite filtrar por emoción (10%)
-    - La interfaz de usuario permite filtrar por fecha (10%)
+## Ejecución de los tests
 
-- <strong>Persistencia de datos</strong>
-    - Se hace un uso adecuado de la interface Map\<E>. (10%)
+Para ejecutar todos los tests del proyecto:
 
-- <strong>Código y Buenas Prácticas</strong>
-    - Tests de cobertura mínimo un 70% (10%)
-    - El código está bien estructurado (10%)
-    - Correcta separación de responsabiidades. S de "SOLID" (10%)
+```bash
+mvn test
+```
 
-- Documentación: Readme debidamente trabajado (10%)
+Esto también genera un informe detallado de cobertura en `target/site/jacoco/index.html`.
 
-- Si el programa presenta errores de compilación se calificará el proyecto con 0 pts
+### Cobertura de tests
 
+![Cobertura de tests](assets/cobertura-tests.png)
+
+Cobertura total alcanzada: **83% de instrucciones**, **60% de ramas** — superando el mínimo del 70% exigido.
+
+## Diagramas
+
+### Diagrama de casos de uso
+![Diagrama de casos de uso](assets/diagrama-casos-uso.drawio.png)
+
+### Diagrama de clases
+![Diagrama de clases](assets/diagrama-clases.drawio.png)
+
+### Diagrama de secuencia
+![Diagrama de secuencia](assets/diagrama-secuencia.drawio.png)
+
+## Autores
+
+- Andrea (AndreaVaGo)
