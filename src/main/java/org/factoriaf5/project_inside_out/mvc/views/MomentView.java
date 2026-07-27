@@ -52,16 +52,21 @@ public class MomentView {
         }
     }
 
-    private int readOption() {
-        int option;
+    private int readIntInRange(String prompt, int min, int max) {
+        int value;
         do {
-            showMenu();
-            option = readInt();
-            if (!actions.containsKey(option)) {
-                System.out.println("Opción no válida, elija una del 1 al 5.");
+            System.out.print(prompt);
+            value = readInt();
+            if (value < min || value > max) {
+                System.out.println("Opción no válida, inténtelo de nuevo.");
             }
-        } while (!actions.containsKey(option));
-        return option;
+        } while (value < min || value > max);
+        return value;
+    }
+
+    private int readOption() {
+        showMenu();
+        return readIntInRange("", 1, 5);
     }
 
     private Emotion readEmotion() {
@@ -71,14 +76,7 @@ public class MomentView {
             System.out.println(i + ". " + e.getLabel());
             i++;
         }
-        int emotionOption;
-        do {
-            System.out.print("Ingrese su opción: ");
-            emotionOption = readInt();
-            if (emotionOption < 1 || emotionOption > Emotion.values().length) {
-                System.out.println("Opción no válida, inténtelo de nuevo.");
-            }
-        } while (emotionOption < 1 || emotionOption > Emotion.values().length);
+        int emotionOption = readIntInRange("Ingrese su opción: ", 1, Emotion.values().length);
         return Emotion.values()[emotionOption - 1];
     }
 

@@ -12,17 +12,26 @@ import org.factoriaf5.project_inside_out.mvc.models.Moment;
 public class MomentRepository implements InterfaceRepository {
 
     private InMemoryDatabase database;
-    private Integer nextId = 1;
 
     public MomentRepository() {
         this.database = InMemoryDatabase.getInstance();
     }
 
+    private int nextId() {
+        int max = 0;
+        for (Moment moment : database.getAll()) {
+            if (moment.getId() != null && moment.getId() > max) {
+                max = moment.getId();
+            }
+        }
+        return max + 1;
+    }
+
     @Override
     public void save(Moment moment) {
-        moment.setId(nextId);
-        database.put(nextId, moment);
-        nextId++;
+        int id = nextId();
+        moment.setId(id);
+        database.put(id, moment);
     }
 
     @Override
