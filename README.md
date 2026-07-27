@@ -62,7 +62,7 @@ Esto también genera un informe detallado de cobertura en `target/site/jacoco/in
 
 ### Cobertura de tests
 
-![Cobertura de tests](assets/cobertura-tests.png)
+![Cobertura de tests](assets/Tests%20de%20cobertura.png)
 
 Cobertura total alcanzada: **83% de instrucciones**, **60% de ramas** — superando el mínimo del 70% exigido.
 
