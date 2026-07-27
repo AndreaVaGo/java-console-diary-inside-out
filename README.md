@@ -79,4 +79,4 @@ Cobertura total alcanzada: **83% de instrucciones**, **60% de ramas** — supera
 
 ## Autores
 
-- Andrea (AndreaVaGo)
+- Andrea (AndreaVaGo) — [repositorio del proyecto](https://github.com/AndreaVaGo/project-java-consoleapp-inside-out)
