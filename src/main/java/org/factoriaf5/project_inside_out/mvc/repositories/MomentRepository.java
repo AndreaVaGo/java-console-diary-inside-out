@@ -1,6 +1,7 @@
 package org.factoriaf5.project_inside_out.mvc.repositories;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.factoriaf5.project_inside_out.mvc.contracts.InterfaceRepository;
@@ -30,17 +31,29 @@ public class MomentRepository implements InterfaceRepository {
 
     @Override
     public void delete(Integer id) {
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        database.remove(id);
     }
 
     @Override
     public List<Moment> findByEmotion(Emotion emotion) {
-        throw new UnsupportedOperationException("Unimplemented method 'findByEmotion'");
+        List<Moment> result = new ArrayList<>();
+        for (Moment moment : findAll()) {
+            if (moment.getEmotion() == emotion) {
+                result.add(moment);
+            }
+        }
+        return result;
     }
 
     @Override
     public List<Moment> findByMonth(LocalDate date) {
-        throw new UnsupportedOperationException("Unimplemented method 'findByMonth'");
+        List<Moment> result = new ArrayList<>();
+        for (Moment moment : findAll()) {
+            if (moment.getMomentDate().getMonthValue() == date.getMonthValue()
+                    && moment.getMomentDate().getYear() == date.getYear()) {
+                result.add(moment);
+            }
+        }
+        return result;
     }
-
 }
