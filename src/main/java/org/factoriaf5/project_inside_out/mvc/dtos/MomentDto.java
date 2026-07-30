@@ -1,4 +1,4 @@
-package org.factoriaf5.project_inside_out.dtos;
+package org.factoriaf5.project_inside_out.mvc.dtos;
 
 import java.time.LocalDate;
 import org.factoriaf5.project_inside_out.mvc.models.Emotion;
@@ -24,4 +24,31 @@ public class MomentDto {
         this.modificationDate = modificationDate;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Emotion getEmotion() {
+        return emotion;
+    }
+
+    public LocalDate getMomentDate() {
+        return momentDate;
+    }
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public LocalDate getModificationDate() {
+        return modificationDate;
+    }
 }
