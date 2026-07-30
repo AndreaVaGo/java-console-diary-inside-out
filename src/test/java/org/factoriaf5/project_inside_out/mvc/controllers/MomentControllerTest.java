@@ -2,9 +2,10 @@ package org.factoriaf5.project_inside_out.mvc.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import java.time.LocalDate;
-
+import org.factoriaf5.project_inside_out.mvc.contracts.InterfaceRepository;
 import org.factoriaf5.project_inside_out.mvc.models.Emotion;
 import org.factoriaf5.project_inside_out.mvc.models.Moment;
 import org.factoriaf5.project_inside_out.mvc.repositories.MomentRepository;
@@ -67,5 +68,16 @@ public class MomentControllerTest {
         controller.addMoment(moment);
 
         assertTrue(controller.filterByMonth(date).size() >= 1);
+    }
+
+    @Test
+    void shouldCallSaveWhenAddingMomentWithMock() {
+        InterfaceRepository mockRepository = mock(InterfaceRepository.class);
+        MomentController controller = new MomentController(mockRepository);
+
+        Moment moment = new Moment("Título Mock", "Descripción Mock", Emotion.JOY, LocalDate.of(2024, 5, 1));
+        controller.addMoment(moment);
+
+        verify(mockRepository).save(moment);
     }
 }
