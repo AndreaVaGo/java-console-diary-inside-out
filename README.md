@@ -4,7 +4,9 @@
 
 **Mi Diario** es una aplicación de consola desarrollada en Java que permite al usuario gestionar los momentos vividos a lo largo del tiempo, cada uno asociado a una emoción y a una fecha concreta. El usuario puede añadir nuevos momentos, consultar la lista completa, eliminar un momento existente y filtrar los momentos registrados por emoción o por mes.
 
-El proyecto sigue una arquitectura **MVC + Repository**, con persistencia en memoria mediante el patrón **Singleton**, y ha sido desarrollado siguiendo la metodología **TDD** (Test Driven Development), aplicando principios **SOLID** a lo largo de todo el diseño.
+El proyecto sigue una arquitectura **MVC + Repository**, con persistencia en memoria mediante el patrón **Singleton** (de inicialización *Lazy*, ya que la instancia se crea solo la primera vez que se solicita), y ha sido desarrollado siguiendo la metodología **TDD** (Test Driven Development), aplicando principios **SOLID** a lo largo de todo el diseño.
+
+Además del patrón Singleton, el proyecto aplica **inyección de dependencias por constructor** (Inversión de Control) a través de la interfaz `InterfaceRepository`, y utiliza **Mockito** en algunos tests para simular dependencias sin depender de la implementación real.
 
 Cada momento vivido tiene un identificador, un título, una descripción, una emoción, la fecha del momento, la fecha de creación y la fecha de modificación.
 
