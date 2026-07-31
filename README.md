@@ -155,6 +155,6 @@ Cobertura total alcanzada: **83% de instrucciones**, **60% de ramas** — supera
 ### Diagrama de secuencia
 ![Diagrama de secuencia](assets/diagrama-secuencia.drawio.png)
 
-## Autores
+## Autora
 
 - Andrea (AndreaVaGo) — [repositorio del proyecto](https://github.com/AndreaVaGo/project-java-consoleapp-inside-out)
