@@ -51,6 +51,12 @@ Cada capa tiene una única responsabilidad:
 - **Parametrización**: se usan tests parametrizados (`@ParameterizedTest` + `@MethodSource`) para comprobar las 10 emociones del enum `Emotion` y varios casos de filtrado por emoción en el repositorio, evitando duplicar tests casi idénticos.
 - **Mockear**: se usa Mockito para simular `InterfaceRepository` en un test de `MomentController`, comprobando que se invoca el método esperado sin depender de una implementación real ni del estado compartido del Singleton.
 
+## Anotaciones utilizadas
+
+- **`@Test`**: marca cada método de prueba en JUnit 5.
+- **`@ParameterizedTest` / `@MethodSource`**: permiten ejecutar un mismo test con distintos conjuntos de datos (usadas en `EmotionTest` para las 10 emociones y en `MomentRepositoryTest` para varios casos de filtrado por emoción).
+- **`@Override`**: señala explícitamente que un método implementa el contrato definido por una interfaz (`InterfaceRepository`, `InterfaceDatabase`).
+
 ## Persistencia de datos
 
 Los momentos se almacenan en memoria mediante un `HashMap<Integer, Moment>`, encapsulado dentro de `InMemoryDatabase`, implementado como **Singleton de inicialización *Lazy*** (la instancia se crea la primera vez que se solicita, no al arrancar el programa). Se optó por `HashMap` en lugar de `TreeMap` porque ninguna historia de usuario exige un orden concreto de almacenamiento.
