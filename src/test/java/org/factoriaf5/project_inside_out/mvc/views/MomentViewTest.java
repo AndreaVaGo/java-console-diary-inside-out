@@ -7,7 +7,9 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 import org.factoriaf5.project_inside_out.mvc.controllers.MomentController;
+import org.factoriaf5.project_inside_out.mvc.mappers.MomentMapper;
 import org.factoriaf5.project_inside_out.mvc.repositories.MomentRepository;
+import org.factoriaf5.project_inside_out.mvc.services.MomentService;
 import org.junit.jupiter.api.Test;
 
 public class MomentViewTest {
@@ -28,7 +30,9 @@ public class MomentViewTest {
         System.setOut(new PrintStream(outContent));
 
         MomentRepository repository = new MomentRepository();
-        MomentController controller = new MomentController(repository);
+        MomentMapper mapper = new MomentMapper();
+        MomentService service = new MomentService(repository, mapper);
+        MomentController controller = new MomentController(service);
         MomentView view = new MomentView(controller, scanner);
         view.start();
 

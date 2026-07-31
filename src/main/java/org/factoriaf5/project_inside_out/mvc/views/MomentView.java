@@ -8,8 +8,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 import org.factoriaf5.project_inside_out.mvc.controllers.MomentController;
+import org.factoriaf5.project_inside_out.mvc.dtos.MomentDto;
 import org.factoriaf5.project_inside_out.mvc.models.Emotion;
-import org.factoriaf5.project_inside_out.mvc.models.Moment;
+
 
 public class MomentView {
     private MomentController controller;
@@ -99,12 +100,12 @@ public class MomentView {
         return date;
     }
 
-    private void printMoments(List<Moment> moments) {
+    private void printMoments(List<MomentDto> moments) {
         if (moments.isEmpty()) {
             System.out.println("No hay momentos disponibles.");
         } else {
             System.out.println("Lista de momentos vividos:");
-            for (Moment m : moments) {
+            for (MomentDto m : moments) {
                 System.out.println("ID: " + m.getId());
                 System.out.println("Título: " + m.getTitle());
                 System.out.println("Fecha: " + m.getMomentDate().format(dateFormatter));
@@ -117,7 +118,7 @@ public class MomentView {
     }
 
     private boolean existsMomentWithId(int id) {
-        for (Moment m : controller.listMoments()) {
+        for (MomentDto m : controller.listMoments()) {
             if (m.getId() == id) {
                 return true;
             }
@@ -133,7 +134,7 @@ public class MomentView {
         LocalDate parsedDate = readMomentDate();
         Emotion emotion = readEmotion();
 
-        Moment moment = new Moment(title, description, emotion, parsedDate);
+        MomentDto moment = new MomentDto(null, title, description, emotion, parsedDate, null, null);
         controller.addMoment(moment);
         System.out.println("Momento vivido añadido correctamente.");
     }
@@ -181,3 +182,4 @@ public class MomentView {
         } while (option != 5);
     }
 }
+

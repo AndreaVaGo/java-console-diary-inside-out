@@ -2,35 +2,34 @@ package org.factoriaf5.project_inside_out.mvc.controllers;
 
 import java.time.LocalDate;
 import java.util.List;
-
-import org.factoriaf5.project_inside_out.mvc.contracts.InterfaceRepository;
+import org.factoriaf5.project_inside_out.mvc.dtos.MomentDto;
 import org.factoriaf5.project_inside_out.mvc.models.Emotion;
-import org.factoriaf5.project_inside_out.mvc.models.Moment;
+import org.factoriaf5.project_inside_out.mvc.services.MomentService;
 
 public class MomentController {
-    private InterfaceRepository repository;
+    private MomentService service;
 
-    public MomentController(InterfaceRepository repository) {
-        this.repository = repository;
+    public MomentController(MomentService service) {
+        this.service = service;
     }
 
-    public void addMoment(Moment moment){
-        repository.save(moment);
+    public void addMoment(MomentDto moment){
+        service.addMoment(moment);
     }
 
-    public List<Moment> listMoments(){
-        return repository.findAll();
+    public List<MomentDto> listMoments(){
+        return service.listMoments();
     }
 
     public void deleteMoment(Integer id){
-        repository.delete(id);
+        service.deleteMoment(id);
     }
 
-    public List<Moment> filterByEmotion(Emotion emotion){
-        return repository.findByEmotion(emotion);
+    public List<MomentDto> filterByEmotion(Emotion emotion){
+        return service.filterByEmotion(emotion);
     }
 
-    public List<Moment> filterByMonth(LocalDate date){
-        return repository.findByMonth(date);
+    public List<MomentDto> filterByMonth(LocalDate date){
+        return service.filterByMonth(date);
     }
 }
